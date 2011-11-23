@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_29" class="java.beans.XMLDecoder"> 
+ <object class="com.horstmann.violet.ObjectDiagramGraph"> 
+  <void method="addNode"> 
+   <object id="ObjectNode0" class="com.horstmann.violet.ObjectNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Graphics</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>201.0</double> 
+     <double>334.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ObjectNode1" class="com.horstmann.violet.ObjectNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Menus
+</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>204.0</double> 
+     <double>252.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ObjectNode2" class="com.horstmann.violet.ObjectNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Game Engine</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>365.0</double> 
+     <double>268.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ObjectNode3" class="com.horstmann.violet.ObjectNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Model</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>547.0</double> 
+     <double>269.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ObjectNode4" class="com.horstmann.violet.ObjectNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Database</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>552.0</double> 
+     <double>360.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ObjectNode5" class="com.horstmann.violet.ObjectNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Server</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>379.0</double> 
+     <double>164.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ObjectRelationshipEdge"/> 
+   <object idref="ObjectNode1"/> 
+   <object idref="ObjectNode2"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ObjectRelationshipEdge"/> 
+   <object idref="ObjectNode0"/> 
+   <object idref="ObjectNode2"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ObjectRelationshipEdge"/> 
+   <object idref="ObjectNode5"/> 
+   <object idref="ObjectNode2"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ObjectRelationshipEdge"/> 
+   <object idref="ObjectNode2"/> 
+   <object idref="ObjectNode3"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ObjectRelationshipEdge"/> 
+   <object idref="ObjectNode2"/> 
+   <object idref="ObjectNode4"/> 
+  </void> 
+ </object> 
+</java> 
