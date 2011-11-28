@@ -8,12 +8,13 @@
       <string>- int time_to_explosion
 - list &lt;Planet&gt; planets
 - double radius
-- Point center</string> 
+- Point3D center</string> 
      </void> 
     </void> 
     <void property="methods"> 
      <void property="text"> 
-      <string>+ int getTime()
+      <string>+ Star(int time, double radius, Point3D center)
++ int getTime()
 + void setTime(int time)
 + double getRadius()
 + void setRadius(double radius)
@@ -33,7 +34,7 @@
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
      <double>123.7028640350245</double> 
-     <double>144.8927344051279</double> 
+     <double>192.8927344051279</double> 
     </void> 
    </object> 
   </void> 
@@ -41,31 +42,28 @@
    <object id="ClassNode1" class="com.horstmann.violet.ClassNode"> 
     <void property="attributes"> 
      <void property="text"> 
-      <string>- list &lt;Unit&gt; orbiting_units
-- list &lt;Structure&gt; surface_structures
+      <string>- list &lt;Structure&gt; surface_structures
 - double orbital_velocity
 - double rotate_velocity
-- Point center
+- Point3D center
 - double radius 
 </string> 
      </void> 
     </void> 
     <void property="methods"> 
      <void property="text"> 
-      <string>+ double getOrbitalVelocity()
+      <string>+ Planet(double orbitalVelocity, double rotateVelocity, Point3D Center, double radius)
++ double getOrbitalVelocity()
 + void setOrbitalVelocity(double velocity)
 + double getRotateVelocity()
 + void setRotateVelocity(double velocity)
-+ Point getCenter()
-+ void setCenter(double x, double y)
++ Point3d getCenter()
++ void setCenter(Point3d center)
 + double getRadius()
 + void setRadius(double radius)
-+ bool addUnit(Unit unit)
-+ bool removeUnit(Unit unit)
-+ bool removeUnits()
-+ bool addStructure(Structure structure)
-+ bool removeStructure(Structure structure)
-+ bool removeStructures()</string> 
++ bool buildStructure(Structure structure)
++ bool destroyStructure(Structure structure)
++ int getNumberOfUnits()</string> 
      </void> 
     </void> 
     <void property="name"> 
@@ -76,8 +74,8 @@
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>590.0</double> 
-     <double>91.0</double> 
+     <double>592.0</double> 
+     <double>184.0</double> 
     </void> 
    </object> 
   </void> 
@@ -87,16 +85,31 @@
      <void property="text"> 
       <string>- int energy
 - int damage
-- Point position
+- Planet host_planet
+- Point3D position
 - double velocity
 - list &lt;Ability&gt;  unit_abilities
-- bool deep_space
-- bool locked</string> 
+- bool deep_space</string> 
      </void> 
     </void> 
     <void property="methods"> 
      <void property="text"> 
-      <string>+ </string> 
+      <string>+ Unit (String type, Planet hostPlanet )
++ void setEnergy(int energy)
++ int getEnergy()
++ int getDamage()
++ void setDamage(int damage)
++ bool move(Planet hostPlanet)
++ bool getHostPlanet()
++ bool useAbility(Ability ability)
++ void destroyUnit()
++ void attack()
++ void setVelocity(double velocity)
++ int getVelocity()
++ void setDeepSpace(bool)
++ bool getDeepSpace()
++ void setPosition(Point3D)
++ Point3D getPosition()</string> 
      </void> 
     </void> 
     <void property="name"> 
@@ -107,8 +120,8 @@
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>639.5219933688504</double> 
-     <double>581.7809506181459</double> 
+     <double>719.5219933688504</double> 
+     <double>604.7809506181459</double> 
     </void> 
    </object> 
   </void> 
@@ -116,14 +129,14 @@
    <object id="ClassNode3" class="com.horstmann.violet.ClassNode"> 
     <void property="attributes"> 
      <void property="text"> 
-      <string>- int energy
-- int damage
-- bool locked</string> 
+      <string>- int energy</string> 
      </void> 
     </void> 
     <void property="methods"> 
      <void property="text"> 
-      <string>+ </string> 
+      <string>+ Structure(int energy, int damage)
++ int getEnergy()
++ void setEnergy(int energy)</string> 
      </void> 
     </void> 
     <void property="name"> 
@@ -134,8 +147,8 @@
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>1061.4839470662803</double> 
-     <double>221.7842668936493</double> 
+     <double>1367.4839470662803</double> 
+     <double>289.78426689364926</double> 
     </void> 
    </object> 
   </void> 
@@ -145,13 +158,17 @@
      <void property="text"> 
       <string>- int cool_down
 - int damage
-- bool locked
 - bool used</string> 
      </void> 
     </void> 
     <void property="methods"> 
      <void property="text"> 
-      <string>+ </string> 
+      <string>+ int getCoolDown()
++ void setCoolDown(int)
++ int getDamage()
++ void setDamage(int)
++ void setUsed(bool used)
++ bool getUsed()</string> 
      </void> 
     </void> 
     <void property="name"> 
@@ -162,8 +179,150 @@
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>292.83969024194687</double> 
-     <double>607.0906884300342</double> 
+     <double>206.83969024194687</double> 
+     <double>724.0906884300342</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode5" class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>- list &lt;String&gt; units_in_construction </string> 
+     </void> 
+    </void> 
+    <void property="methods"> 
+     <void property="text"> 
+      <string>+ void addToQueue(String unitType)
++ void removeFromQueue(String unitType)</string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Factory</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>1045.0</double> 
+     <double>799.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode6" class="com.horstmann.violet.ClassNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Lab</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>1319.0</double> 
+     <double>796.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode7" class="com.horstmann.violet.ClassNode"> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Mine</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>1425.0</double> 
+     <double>797.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object id="ClassNode8" class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>- int damage</string> 
+     </void> 
+    </void> 
+    <void property="methods"> 
+     <void property="text"> 
+      <string>+ int getDamage()
++ void setDamage(int damage)</string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Defense</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>1565.0</double> 
+     <double>795.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>- list &lt;Planet&gt; planets
+- list &lt;Structure&gt; structures
+- list &lt;Unit&gt; units
+- list &lt;Research Tree&gt; research_tree
+- 
+</string> 
+     </void> 
+    </void> 
+    <void property="methods"> 
+     <void property="text"> 
+      <string>+ </string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>Player</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>1228.0</double> 
+     <double>25.0</double> 
+    </void> 
+   </object> 
+  </void> 
+  <void method="addNode"> 
+   <object class="com.horstmann.violet.ClassNode"> 
+    <void property="attributes"> 
+     <void property="text"> 
+      <string>- list &lt;Planet&gt; planets
+- list &lt;Structure&gt; structures
+- list &lt;Unit&gt; units
+- list &lt;Research Tree&gt; research_tree
+- 
+</string> 
+     </void> 
+    </void> 
+    <void property="methods"> 
+     <void property="text"> 
+      <string>+ </string> 
+     </void> 
+    </void> 
+    <void property="name"> 
+     <void property="text"> 
+      <string>AI</string> 
+     </void> 
+    </void> 
+   </object> 
+   <object class="java.awt.geom.Point2D$Double"> 
+    <void method="setLocation"> 
+     <double>1480.0</double> 
+     <double>25.0</double> 
     </void> 
    </object> 
   </void> 
@@ -184,24 +343,6 @@
    </object> 
    <object idref="ClassNode0"/> 
    <object idref="ClassNode1"/> 
-  </void> 
-  <void method="connect"> 
-   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
-    <void property="bentStyle"> 
-     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
-    </void> 
-    <void property="endLabel"> 
-     <string>1 ... *</string> 
-    </void> 
-    <void property="startArrowHead"> 
-     <object class="com.horstmann.violet.ArrowHead" field="BLACK_DIAMOND"/> 
-    </void> 
-    <void property="startLabel"> 
-     <string>1</string> 
-    </void> 
-   </object> 
-   <object idref="ClassNode1"/> 
-   <object idref="ClassNode2"/> 
   </void> 
   <void method="connect"> 
    <object class="com.horstmann.violet.ClassRelationshipEdge"> 
@@ -238,6 +379,66 @@
    </object> 
    <object idref="ClassNode2"/> 
    <object idref="ClassNode4"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="HVH"/> 
+    </void> 
+    <void property="endArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="V"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode2"/> 
+   <object idref="ClassNode1"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="VHV"/> 
+    </void> 
+    <void property="endArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="TRIANGLE"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode7"/> 
+   <object idref="ClassNode3"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="VHV"/> 
+    </void> 
+    <void property="endArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="TRIANGLE"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode8"/> 
+   <object idref="ClassNode3"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="VHV"/> 
+    </void> 
+    <void property="endArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="TRIANGLE"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode6"/> 
+   <object idref="ClassNode3"/> 
+  </void> 
+  <void method="connect"> 
+   <object class="com.horstmann.violet.ClassRelationshipEdge"> 
+    <void property="bentStyle"> 
+     <object class="com.horstmann.violet.BentStyle" field="VHV"/> 
+    </void> 
+    <void property="endArrowHead"> 
+     <object class="com.horstmann.violet.ArrowHead" field="TRIANGLE"/> 
+    </void> 
+   </object> 
+   <object idref="ClassNode5"/> 
+   <object idref="ClassNode3"/> 
   </void> 
  </object> 
 </java> 
